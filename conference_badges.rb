@@ -8,17 +8,10 @@ def batch_badge_creator(group)
   group.collect { |name| badge_maker(name) }
 end
 
-def assign_rooms(group)
-  group.collect  { |name|
-    "Hello, #{name}! You'll be assigned to room #{group.find_index(name)+1}!"
-  }
+def assign_rooms(g)
+  g.collect  { |n| "Hello, #{n}! You'll be assigned to room #{g.find_index(n)+1}!" }
 end
 
-def printer(group)
-  batch_badge_creator(group).length.times {
-    |index| puts batch_badge_creator(group)[index]
-  }
-  assign_rooms(group).length.times {
-    |index| puts assign_rooms(group)[index]
-  }
+def printer(g)
+  batch_badge_creator(g).concat(assign_rooms(g)).each { |i| puts i }
 end
